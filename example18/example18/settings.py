@@ -39,7 +39,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'django_extensions',
     'django_version_viewer'
 )
 
@@ -77,16 +76,10 @@ WSGI_APPLICATION = 'example18.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-# currently set up for a docker postgres container
-# docker run -d -p 5461:5432 --name=django_version_viewer_postgres -e POSTGRES_PASSWORD=postgres postgres
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost',
-        'PORT': 5461
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -110,5 +103,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-PHYSICIAN_DETAIL_SERIALIZER_PATH = 'physicians.plugins.physicians_api.serializers.PhysicianBaseSerializer'
 ACCESSOR_CLASS_PATH = 'django_version_viewer.mixins.Accessor'

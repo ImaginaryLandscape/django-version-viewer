@@ -7,7 +7,8 @@ from pip_viewer import list_package_versions
 from django.views.generic import View
 import json
 
-accessor_class = locate(settings.ACCESSOR_CLASS_PATH)
+accessor_class = locate(
+    getattr(settings, 'ACCESSOR_CLASS_PATH', 'django_version_viewer.mixins.Accessor'))
 accessor = accessor_class()
 
 

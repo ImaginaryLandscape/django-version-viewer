@@ -20,11 +20,13 @@ Add `django_version_viewer` include to `urls.py`
 		...
 	]
 
-Choose the Accessor class that determins who can view/access the version_viewer template tag and route:
+You can set your own access permissions on the template tag and route by defining your own
+`Accessor` class. This class must have a `allow_access` method that returns a `boolean`. By defualt,
+django_version_viewer only allows superusers access to the route and template tag.
 
 	# Django Version Viewer settings:
 	# default class only allows superusers access
-	ACCESSOR_CLASS_PATH = 'django_version_viewer.mxins.Accessor'
+	ACCESSOR_CLASS_PATH = 'mypathto.my.AccessorClass'
 
 
 Override the `base.html` django Admin template (or the template of your choosing) by creating a `base.html` file  inside a `templates/admin` directory in your project.
