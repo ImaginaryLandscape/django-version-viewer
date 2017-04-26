@@ -1,9 +1,9 @@
 from setuptools import setup
 
 setup(
-    name='version_viewer',
+    name='django_version_viewer',
     version='0.0.1a1',
-    packages=['version_viewer'],
+    packages=['django_version_viewer'],
     install_requires=(
     ),
 )

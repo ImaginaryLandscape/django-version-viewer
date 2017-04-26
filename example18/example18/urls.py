@@ -17,5 +17,5 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^version_viewer/', include('version_viewer.urls')),
+    url(r'^django_version_viewer/', include('django_version_viewer.urls')),
 ]

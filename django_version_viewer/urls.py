@@ -8,7 +8,5 @@ except ImportError:
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.PipPackageViewer.as_view(), name='version_viewer'),
-    # url(r'^$', views.pip_package_viewer,
-    #     None, name='pip_package_viewer'),
+    url(r'^$', views.DjangoVersionViewer.as_view(), name='django_version_viewer'),
 ]

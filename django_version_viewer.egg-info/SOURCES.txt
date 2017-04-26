@@ -1,0 +1,9 @@
+django_version_viewer/__init__.py
+django_version_viewer/mixins.py
+django_version_viewer/pip_viewer.py
+django_version_viewer/urls.py
+django_version_viewer/views.py
+django_version_viewer.egg-info/PKG-INFO
+django_version_viewer.egg-info/SOURCES.txt
+django_version_viewer.egg-info/dependency_links.txt
+django_version_viewer.egg-info/top_level.txt

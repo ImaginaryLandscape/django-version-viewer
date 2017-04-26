@@ -2,8 +2,6 @@ from pydoc import locate
 
 from django.conf import settings
 from django import template
-# from version_viewer.mixins import Accessor
-# here pull in class location for Accessor..
 
 
 register = template.Library()

@@ -1,13 +1,13 @@
 {% block content %}
 <div>
   {% if allow %}
-    <a id="pip_package_viewer" data-toggle="modal" href="#myModal">Installed Versions</a>
+    <a id="django_version_viewer" data-toggle="modal" href="#packageModal">Installed Versions</a>
   {% endif %}
 </div>
 
 
 <!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
+<div id="packageModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -34,11 +34,11 @@
 
 {% block javascript %}
 <script>
-  $( "#pip_package_viewer" ).click(function() {
+  $( "#django_version_viewer" ).click(function() {
     var packages;
     $.ajax({
       type: "GET",
-      url: {% url "version_viewer" %},
+      url: {% url "django_version_viewer" %},
       csrfmiddlewaretoken: '{{ csrf_token }}',
       success: function(data){
         packages = data;

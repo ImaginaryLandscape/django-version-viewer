@@ -11,7 +11,7 @@ accessor_class = locate(settings.ACCESSOR_CLASS_PATH)
 accessor = accessor_class()
 
 
-class PipPackageViewer(View):
+class DjangoVersionViewer(View):
 
     def get(self, request, *args, **kwargs):
         if not accessor.allow_access(request):

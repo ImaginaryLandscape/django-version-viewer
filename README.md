@@ -1,4 +1,4 @@
-# Pip Package Version Viewer
+# Django Version Viewer
 
 The pip package version viewer plugin allows a queryable endpoint to display a list of dicts representing all installed pip packages in the environment that django is running in. It also allows the insertion of a template tag to any template to display a link which calls up a pop up modal displaying all installed pip packages. You may also configure which users have access to the link and endpoint.
 
@@ -9,22 +9,22 @@ The pip package version viewer plugin allows a queryable endpoint to display a l
 Add the following to `INSTALLED_APPS` in `settings.py`
 
 	INSTALLED_APPS = [
-		'version_viewer'
+		'django_version_viewer'
 	]
 
-Add `version_viewer` include to `urls.py`
+Add `django_version_viewer` include to `urls.py`
 
 	urlpatterns = [
 		...
-		url(r'^version_viewer/', include('version_viewer.urls')),
+		url(r'^django_version_viewer/', include('django_version_viewer.urls')),
 		...
 	]
 
 Choose the Accessor class that determins who can view/access the version_viewer template tag and route:
 
-	# Version Viewer settings:
+	# Django Version Viewer settings:
 	# default class only allows superusers access
-	ACCESSOR_CLASS_PATH = 'version_viewer.mxins.Accessor'
+	ACCESSOR_CLASS_PATH = 'django_version_viewer.mxins.Accessor'
 
 
 Override the `base.html` django Admin template (or the template of your choosing) by creating a `base.html` file  inside a `templates/admin` directory in your project.
