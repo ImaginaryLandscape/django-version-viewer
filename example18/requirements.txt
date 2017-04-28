@@ -1,0 +1,2 @@
+-r ./requirements/pypi_requirements.txt
+-e .. # install with containing version_viewer version
