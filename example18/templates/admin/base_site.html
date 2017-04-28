@@ -1,5 +1,12 @@
 {% extends "admin/base.html" %}
-{% load i18n pip_version_viewer_tags %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Django administration') }}</a></h1>
+{% endblock %}
+
+{% load pip_version_viewer_tags %}
 
 {% block extrahead %}
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -9,3 +16,5 @@
 {% block pretitle %}
   {% show_pip_package_versions %}
 {% endblock %}
+
+{% block nav-global %}{% endblock %}
