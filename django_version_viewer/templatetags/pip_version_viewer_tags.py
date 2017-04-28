@@ -12,7 +12,8 @@ accessor = accessor_class()
 
 @register.inclusion_tag('version_viewer.html', takes_context=True)
 def show_pip_package_versions(context):
-    if accessor.allow_access(request=context['request']):
-        return {'allow': True}
-    else:
-        return {'allow': False}
+    request = context.get('request', None)
+    results = {'allow': False}
+    if request and accessor.allow_access(request=request):
+        results = {'allow': True}
+    return results
