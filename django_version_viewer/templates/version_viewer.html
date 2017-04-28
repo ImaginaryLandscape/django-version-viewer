@@ -15,6 +15,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Versions</h4>
+        <a href='{% url "django_version_viewer_csv" %}' download>Download CSV</a>
       </div>
       <div class="modal-body">
           <div class="box" id="packages_box">
@@ -38,7 +39,7 @@
     var packages;
     $.ajax({
       type: "GET",
-      url: {% url "django_version_viewer" %},
+      url: "{% url 'django_version_viewer' %}",
       csrfmiddlewaretoken: '{{ csrf_token }}',
       success: function(data){
         packages = data;
