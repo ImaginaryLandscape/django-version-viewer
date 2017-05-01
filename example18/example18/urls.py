@@ -18,4 +18,6 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^django_version_viewer/', include('django_version_viewer.urls')),
+    url(r'^', include('cms.urls')),
+
 ]

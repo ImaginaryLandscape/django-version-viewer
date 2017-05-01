@@ -1,20 +1,22 @@
+lines (13 sloc) 901 Bytes
 {% extends "admin/base.html" %}
+{% load i18n staticfiles admin_style_tags pip_version_viewer_tags %}
 
-{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
-
-{% block branding %}
-<h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Django administration') }}</a></h1>
-{% endblock %}
-
-{% load pip_version_viewer_tags %}
+{% block extrastyle %}{% include 'admin/inc/extrastyle.html' %}{% endblock %}
 
 {% block extrahead %}
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-{% endblock %}
-{% block pretitle %}
-  {% show_pip_package_versions %}
-{% endblock %}
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="stylesheet" type="text/css" href="{% static 'djangocms_admin_style/css/djangocms-admin.css' %}" />
+{% if request.user.is_superuser %}{% render_update_notification %}{% endif %}
+<script src="{% static 'djangocms_admin_style/js/dist/bundle.adminstyle.min.js' %}"></script>
+{% include 'admin/inc/extrahead.html' %}{% endblock %}
 
-{% block nav-global %}{% endblock %}
+{% block pretitle %}{% show_pip_package_versions %}{% endblock %}
+
+{% block title %}{% include 'admin/inc/title.html' %}{% endblock %}
+
+{% block bodyclass %}{{ block.super }} djangocms-admin-style{% endblock %}
+
+{% block branding %}{% include 'admin/inc/branding.html' %}{% endblock %}
+
+{% block userlinks %}{% include 'admin/inc/userlinks.html' %}{{ block.super }}{% endblock %}

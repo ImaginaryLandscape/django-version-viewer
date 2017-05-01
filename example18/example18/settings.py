@@ -17,6 +17,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_DIR = os.path.join(BASE_DIR, "example")
 
 
+SITE_ID = 1
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
@@ -28,10 +30,17 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LANGUAGES = [
+    ('en', 'English'),
+]
 
+CMS_TEMPLATES = [
+    ('home.html', 'Home page template'),
+]
 # Application definition
 
 INSTALLED_APPS = (
+    'djangocms_admin_style',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,7 +48,18 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'django_version_viewer'
+    'django.contrib.sites',
+    'cms',
+    'menus',
+    'treebeard',
+    'sekizai',
+    'filer',
+    'easy_thumbnails',
+    'mptt',
+    'djangocms_text_ckeditor',
+    # 'cms_workflow',
+    'django_version_viewer',
+
 )
 
 MIDDLEWARE_CLASSES = (
@@ -51,6 +71,11 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'cms.middleware.user.CurrentUserMiddleware',
+    'cms.middleware.page.CurrentPageMiddleware',
+    'cms.middleware.toolbar.ToolbarMiddleware',
+    'cms.middleware.language.LanguageCookieMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 )
 
 ROOT_URLCONF = 'example18.urls'
@@ -65,6 +90,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'sekizai.context_processors.sekizai',
+                'cms.context_processors.cms_settings',
             ],
         },
     },
@@ -87,7 +114,7 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'UTC'
 
@@ -103,4 +130,20 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+
 ACCESSOR_CLASS_PATH = 'django_version_viewer.mixins.Accessor'
+PROJECT_ROOT = BASE_DIR = os.environ.get(
+    "DJANGO_PROJECT_ROOT",
+    os.path.abspath(os.path.dirname(__file__.decode('utf-8'))))
+ENVIRONMENT_ROOT = os.environ.get(
+    "DJANGO_ENVIRONMENT_ROOT",
+    os.path.abspath(os.path.join(PROJECT_ROOT, '..', '..', '..')))
+LOG_ROOT = os.environ.get(
+    "DJANGO_LOG_ROOT",
+    os.path.abspath(os.path.join(ENVIRONMENT_ROOT, 'var', 'log')))
+HTDOCS_ROOT = os.environ.get("DJANGO_HTDOCS_ROOT",
+                             os.path.abspath(os.path.join(ENVIRONMENT_ROOT, 'htdocs')))
+STATIC_ROOT = os.path.join(HTDOCS_ROOT,  'static')

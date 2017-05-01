@@ -7,12 +7,24 @@ from django.http import HttpResponse
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.views.generic import View
+from django.views.generic.base import TemplateView
+
 
 from pip_viewer import list_package_versions, get_pip_packages_csv
 
 accessor_class = locate(
     getattr(settings, 'ACCESSOR_CLASS_PATH', 'django_version_viewer.mixins.Accessor'))
 accessor = accessor_class()
+
+
+class DjangoVersionViewerToolBar(TemplateView):
+    template_name = "test.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(DjangoVersionViewerToolBar, self).get_context_data(**kwargs)
+        packages = list_package_versions()
+        context.update({'packages': packages})
+        return context
 
 
 class DjangoVersionViewer(View):
