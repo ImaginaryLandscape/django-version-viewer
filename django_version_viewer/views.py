@@ -18,7 +18,7 @@ accessor = accessor_class()
 
 
 class DjangoVersionViewerToolBar(TemplateView):
-    template_name = "test.html"
+    template_name = "toolbar.html"
 
     def get_context_data(self, **kwargs):
         context = super(DjangoVersionViewerToolBar, self).get_context_data(**kwargs)
