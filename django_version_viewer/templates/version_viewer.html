@@ -1,10 +1,8 @@
 {% block content %}
-<div>
   {% if allow %}
+<div>
     <a id="django_version_viewer" data-toggle="modal" href="#packageModal">Installed Versions</a>
-  {% endif %}
 </div>
-
 
 <!-- Modal -->
 <div id="packageModal" class="modal fade" role="dialog">
@@ -30,8 +28,8 @@
 
   </div>
 </div>
+{% endif %}
 {% endblock %}
-
 
 {% block javascript %}
 <script>

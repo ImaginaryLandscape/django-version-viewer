@@ -1,0 +1,26 @@
+
+
+<!-- {% block content %}
+{% if success %}
+    {% comment %}
+        Need to use js reload since Django doesn't provide a good
+        way to redirect form within an iframe (django-cms modal).
+    {% endcomment %}
+    <script>window.top.location.reload();</script>
+{% endif %}
+<div id="content-main">
+       <div>
+        <h4 class="modal-title">Versions</h4>
+         <a href='{% url "django_version_viewer_csv" %}' download>Download CSV</a>
+      </div>
+      <div >
+        <table>
+          <tr><th>Package Name</th><th>Package Version</th></tr>
+            {% for package in packages %}
+            <tr><td>{{ package.package_name }}</td><td>{{ package.package_version }}</td></tr>
+            {% endfor %}
+        </table>
+
+      </div>
+</div>
+{% endblock %} -->
