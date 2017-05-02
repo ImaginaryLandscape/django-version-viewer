@@ -45,7 +45,7 @@ Finally, load the template tags file and insert the template tag where ever you 
     {% load pip_version_viewer_tags %}
     {% show_pip_package_versions %}
 
-** Your Project IS using DjangoCMS
+## Your Project IS using DjangoCMS
 
 Override the `base_site.html` django Admin template (or the template of your choosing) by creating a `base.html` file  inside a `templates/admin` directory in your project (Refer to the example project's
 `base_site.html`. This file is based off of DjangoCMS's `base_site.html` file).
