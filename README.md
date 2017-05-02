@@ -12,13 +12,50 @@ Add the following to `INSTALLED_APPS` in `settings.py`
 		'django_version_viewer'
 	]
 
-Add `django_version_viewer` include to `urls.py`
+## Add django_version_viewer urls and extend `admin/index.html`
+
+
+Django Version Viewer needs to extend the `admin/index.html` and append it's urls to your `urls.py`. In your `urls.py` add:
+
+	admin.site.index_template = 'admin/custom_index.html'
+	admin.autodiscover()
 
 	urlpatterns = [
 		...
 		url(r'^django_version_viewer/', include('django_version_viewer.urls')),
 		...
 	]
+
+In your `templates` dir, create a `custom_index.html`.
+
+	<!-- custom_index.html -->
+	{% extends "admin/index.html" %}
+
+	{% load i18n admin_static pip_version_viewer_tags %}
+
+	{% block content %}
+	{% show_pip_package_versions %}
+	{{ block.super }}
+	{% endblock %}
+
+
+	<!-- only add this if you are NOT using djangoCMS -->
+	{% block extrahead %}
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	{% endblock %}
+
+If you are using DjangoCMS the added style sheet and js might interfere with DjangoCMS's styling. In this case you should
+create a file called `admin/inc/userlinks.html` inside your `templates` directory.
+
+	<!-- userlinks.html -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+## Permissions
 
 You can set your own access permissions on the template tag and route by defining your own
 `Accessor` class. This class must have a `allow_access` method that returns a `boolean`. By defualt,
@@ -27,27 +64,3 @@ django_version_viewer only allows superusers access to the route and template ta
 	# Django Version Viewer settings:
 	# default class only allows superusers access
 	ACCESSOR_CLASS_PATH = 'mypathto.my.AccessorClass'
-
-
-## Your Project is NOT using DjangoCMS
-
-Override the `base_site.html` django Admin template (or the template of your choosing) by creating a `base.html` file  inside a `templates/admin` directory in your project (Refer to the example project's
-`base_site_regular.html`).
-
-Make sure you insert the necessary `src` and `link` blocks so that the popup modal works properly.
-
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-Finally, load the template tags file and insert the template tag where ever you want the "Installed Versions" link to show up:
-
-    {% load pip_version_viewer_tags %}
-    {% show_pip_package_versions %}
-
-## Your Project IS using DjangoCMS
-
-Override the `base_site.html` django Admin template (or the template of your choosing) by creating a `base.html` file  inside a `templates/admin` directory in your project (Refer to the example project's
-`base_site.html`. This file is based off of DjangoCMS's `base_site.html` file).
-
-Make sure you insert the necessary `src` and `link` blocks inside `admin/inc/userlinks.html`so that the popup modal works properly.
