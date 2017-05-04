@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='django_version_viewer',
-    version='0.0.1a6',
+    version='0.0.1a7',
     packages=['django_version_viewer'],
     install_requires=(
     ),
