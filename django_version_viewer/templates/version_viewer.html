@@ -1,55 +1,48 @@
-{% block content %}
-  {% if allow %}
-<div>
-    <a id="django_version_viewer" data-toggle="modal" href="#packageModal">Installed Versions</a>
-</div>
+{% if allow %}
+  <div style="margin-bottom: 25px"><a class="btn" id="django_version_viewer" href="{% url 'django_version_viewer' %}">Installed Versions</a></div>
 
-<!-- Modal -->
-<div id="packageModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
+  <!-- Modal -->
+  <div class="modal-box" role="dialog" style="background: #fff; display:none; position: absolute; width: 80%; max-width: 600px; z-index: 2001; left: 50%; transform: translateX(-50%); top: 4em; margin-bottom: 20px">
     <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Versions</h4>
-        <a href='{% url "django_version_viewer_csv" %}' download>Download CSV</a>
-      </div>
-      <div class="modal-body">
-          <div class="box" id="packages_box">
-            <table>
-            </table>
-          </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <header style="padding:10px 20px; text-align: right;">
+      <a href="#" class="js-modal-close close" style="font-size:28px">×</a>
+    </header>
+    <div class="modal-body" style="padding: 0 20px">
+      <div class="box" id="packages_box">
+        <table><tbody></tbody></table>
       </div>
     </div>
-
+    <footer style="padding:20px; text-align: right;">
+      <a href="#" class="btn js-modal-close">Close</a>
+    </footer>
   </div>
-</div>
-{% endif %}
-{% endblock %}
+  <div class="modal-overlay js-modal-close" style="display:none; background: rgba(0,0,0,.5); position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index:2000;"></div>
 
-{% block javascript %}
-<script>
-  $( "#django_version_viewer" ).click(function() {
-    var packages;
-    $.ajax({
-      type: "GET",
-      url: "{% url 'django_version_viewer' %}",
-      csrfmiddlewaretoken: '{{ csrf_token }}',
-      success: function(data){
-        packages = data;
-        var html = "<tr><th>Package Name</th><th>Package Version</th></tr>";
-        $.each(packages, function(i, val) {
-          html += "<tr><td>"+val.package_name+"</td>"+"<td>"+val.package_version+"</td></tr>"
-        });
-        $('#packages_box>table').html(html);
-      },
-      error: function(){
-      }
+  <script>
+    $("#django_version_viewer").click(function() {
+      var packages;
+      $.ajax({
+        type: "GET",
+        url: "{% url 'django_version_viewer' %}",
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+        success: function(data){
+          packages = data;
+          var html = "<tr><th>Package Name</th><th>Package Version</th></tr>";
+          $.each(packages, function(i, val) {
+            html += "<tr><td style='line-height:normal; padding: 5px 10px!important'>"+val.package_name+"</td>"+"<td style='line-height:normal; padding: 5px 10px!important'>"+val.package_version+"</td></tr>"
+          });
+          $('#packages_box tbody').html(html);
+
+          $(".modal-box, .modal-overlay").fadeIn(200);
+        },
+        error: function(){
+        }
+      });
+      return false;
     });
-  });
-</script>
-{% endblock %}
+    $(".js-modal-close").click(function() {
+        $(".modal-box, .modal-overlay").fadeOut(200);
+        return false;
+    });
+  </script>
+{% endif %}
