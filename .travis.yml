@@ -1,0 +1,19 @@
+language: python
+
+python:
+  - 2.7
+  - 3.4
+  - 3.5
+
+env:
+- DJANGO="Django>=1.7,<1.8"
+- DJANGO="Django>=1.8,<1.9"
+- DJANGO="Django>=1.9,<1.10"
+- DJANGO="Django>=1.10,<1.11"
+- DJANGO="Django>=1.11,<1.12"
+
+install:
+  - pip install -qU $DJANGO
+  - pip install -e .[testing]
+
+script: ENABLE_DJANGOCMS=False ./example18/manage.py test django_version_viewer && flake8 .

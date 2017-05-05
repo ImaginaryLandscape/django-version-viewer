@@ -14,6 +14,7 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.conf import settings
 
 admin.site.index_template = 'admin/custom_index.html'
 admin.autodiscover()
@@ -22,6 +23,10 @@ admin.autodiscover()
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^django_version_viewer/', include('django_version_viewer.urls')),
-    url(r'^', include('cms.urls')),
-
 ]
+
+if settings.ENABLE_DJANGOCMS:
+    print("CMS")
+    urlpatterns += [
+        url(r'^', include('cms.urls')),
+    ]

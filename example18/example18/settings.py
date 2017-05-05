@@ -15,7 +15,7 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_DIR = os.path.join(BASE_DIR, "example18")
-print(BASE_DIR)
+
 
 SITE_ID = 1
 
@@ -34,12 +34,10 @@ LANGUAGES = [
     ('en', 'English'),
 ]
 
-CMS_TEMPLATES = [
-    ('home.html', 'Home page template'),
-]
+
 # Application definition
 
-INSTALLED_APPS = (
+INSTALLED_APPS = [
     'djangocms_admin_style',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -49,20 +47,10 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'django.contrib.sites',
-    'cms',
-    'menus',
-    'treebeard',
-    'sekizai',
-    'filer',
-    'easy_thumbnails',
-    'mptt',
-    'djangocms_text_ckeditor',
-    # 'cms_workflow',
     'django_version_viewer',
+]
 
-)
-
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE_CLASSES = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -71,12 +59,9 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'cms.middleware.user.CurrentUserMiddleware',
-    'cms.middleware.page.CurrentPageMiddleware',
-    'cms.middleware.toolbar.ToolbarMiddleware',
-    'cms.middleware.language.LanguageCookieMiddleware',
     'django.middleware.locale.LocaleMiddleware',
-)
+]
+
 
 ROOT_URLCONF = 'example18.urls'
 TEMPLATES = [
@@ -137,7 +122,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 ACCESSOR_CLASS_PATH = 'django_version_viewer.mixins.Accessor'
 PROJECT_ROOT = BASE_DIR = os.environ.get(
     "DJANGO_PROJECT_ROOT",
-    os.path.abspath(os.path.dirname(__file__.decode('utf-8'))))
+    os.path.abspath(os.path.dirname(__file__)))
 ENVIRONMENT_ROOT = os.environ.get(
     "DJANGO_ENVIRONMENT_ROOT",
     os.path.abspath(os.path.join(PROJECT_ROOT, '..', '..', '..')))
@@ -147,3 +132,37 @@ LOG_ROOT = os.environ.get(
 HTDOCS_ROOT = os.environ.get("DJANGO_HTDOCS_ROOT",
                              os.path.abspath(os.path.join(ENVIRONMENT_ROOT, 'htdocs')))
 STATIC_ROOT = os.path.join(HTDOCS_ROOT, 'static')
+
+# if you want to test an example project with djangocms
+ENABLE_DJANGOCMS = (
+    False
+    if os.environ.get("ENABLE_DJANGOCMS", True) in ["", "False", False, "false"]
+    else True)
+
+
+if ENABLE_DJANGOCMS:
+    CMS_TEMPLATES = [
+        ('home.html', 'Home page template'),
+    ]
+
+    MIDDLEWARE_CLASSES += [
+        'cms.middleware.user.CurrentUserMiddleware',
+        'cms.middleware.page.CurrentPageMiddleware',
+        'cms.middleware.toolbar.ToolbarMiddleware',
+        'cms.middleware.language.LanguageCookieMiddleware',
+    ]
+
+    INSTALLED_APPS += [
+        'cms',
+        'menus',
+        'treebeard',
+        'sekizai',
+        'easy_thumbnails',
+        'mptt',
+        'djangocms_text_ckeditor',
+    ]
+
+    TEMPLATES[0]['OPTIONS']['context_processors'] += [
+        'sekizai.context_processors.sekizai',
+        'cms.context_processors.cms_settings',
+    ]
