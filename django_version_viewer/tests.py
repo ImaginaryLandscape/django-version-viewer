@@ -11,9 +11,9 @@ class TestVersionViewer(unittest.TestCase):
     url_django_version_viewer = reverse('django_version_viewer')
 
     mock_data = [
-         {"key": "appdirs", "version": "1.4.3"},
-         {"key": "django", "version": "1.8.18"},
-         {"key": "six", "version": "1.10.0"}
+        {"key": "appdirs", "version": "1.4.3"},
+        {"key": "django", "version": "1.8.18"},
+        {"key": "six", "version": "1.10.0"}
     ]
 
     def mocked_pip_get_installed_distributions(self, *args, **kwargs):
@@ -53,7 +53,8 @@ class TestVersionViewer(unittest.TestCase):
     def test_django_version_viewer_view_admin(self):
         client = Client()
         client.login(username=self.admin.username, password="password")
-        with mock.patch('pip.get_installed_distributions', side_effect=self.mocked_pip_get_installed_distributions):
+        with mock.patch('pip.get_installed_distributions',
+                        side_effect=self.mocked_pip_get_installed_distributions):
             response = client.get(self.url_django_version_viewer)
             json_response = json.loads(response.content)
             self.assertEqual(response.status_code, 200)

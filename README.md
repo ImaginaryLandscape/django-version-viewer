@@ -64,3 +64,11 @@ django_version_viewer only allows superusers access to the route and template ta
 	# Django Version Viewer settings:
 	# default class only allows superusers access
 	ACCESSOR_CLASS_PATH = 'mypathto.my.AccessorClass'
+
+
+## Running Tests
+
+    cd example18/
+		pip install -r requirements.txt
+		flake8 ..
+    ./manage.py test django_version_viewer

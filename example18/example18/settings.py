@@ -14,8 +14,8 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PROJECT_DIR = os.path.join(BASE_DIR, "example")
-
+PROJECT_DIR = os.path.join(BASE_DIR, "example18")
+print(BASE_DIR)
 
 SITE_ID = 1
 
@@ -146,4 +146,4 @@ LOG_ROOT = os.environ.get(
     os.path.abspath(os.path.join(ENVIRONMENT_ROOT, 'var', 'log')))
 HTDOCS_ROOT = os.environ.get("DJANGO_HTDOCS_ROOT",
                              os.path.abspath(os.path.join(ENVIRONMENT_ROOT, 'htdocs')))
-STATIC_ROOT = os.path.join(HTDOCS_ROOT,  'static')
+STATIC_ROOT = os.path.join(HTDOCS_ROOT, 'static')
