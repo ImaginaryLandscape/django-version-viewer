@@ -9,7 +9,7 @@ setup(
     install_requires=(
     ),
     extras_require={
-        'testing': ["mock >= 1.0.1", "six >= 1.9.0"],
+        'testing': ["mock >= 1.0.1", "six >= 1.9.0", 'flake8'],
     },
     url="https://github.com/ImaginaryLandscape/django-version-viewer",
     long_description=open('README.md', 'r').read(),
