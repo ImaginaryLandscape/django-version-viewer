@@ -39,22 +39,6 @@ In your `templates` dir, create a `custom_index.html`.
 	{% endblock %}
 
 
-	<!-- only add this if you are NOT using djangoCMS -->
-	{% block extrahead %}
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	{% endblock %}
-
-If you are using DjangoCMS the added style sheet and js might interfere with DjangoCMS's styling. In this case you should
-create a file called `admin/inc/userlinks.html` inside your `templates` directory.
-
-	<!-- userlinks.html -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
 ## Permissions
 
 You can set your own access permissions on the template tag and route by defining your own
