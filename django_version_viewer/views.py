@@ -10,7 +10,7 @@ from django.views.generic import View
 from django.views.generic.base import TemplateView
 
 
-from pip_viewer import list_package_versions, get_pip_packages_csv
+from .pip_viewer import list_package_versions, get_pip_packages_csv
 
 accessor_class = locate(
     getattr(settings, 'ACCESSOR_CLASS_PATH', 'django_version_viewer.mixins.Accessor'))
