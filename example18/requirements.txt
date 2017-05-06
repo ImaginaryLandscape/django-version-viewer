@@ -3,3 +3,5 @@ mock==2.0.0
 django-cms==3.4.3
 djangocms-text-ckeditor
 flake8
+easy_thumbnails
+django-mptt
