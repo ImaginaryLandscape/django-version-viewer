@@ -15,6 +15,7 @@ This tool can be used in several ways. It provides:
 
 You may also configure which users have access to the link and endpoint.
 
+See .travis.yml for supported versions of Python and Django.
 
 ---------------------------------------
 ## Installation
@@ -79,7 +80,23 @@ allows superusers access to the route and template tag.
 
 ## Running Tests
 
+    # in a virtualenv
     pip install -e .[testing]
     pip install 'django==1.8'
     flake8 .
     ENABLE_DJANGOCMS=False coverage run ./example18/manage.py test django_version_viewer
+
+
+## Using the Example Project
+
+An example project is provided to demonstrate the project.
+
+    # in a virtualenv
+    cd example18/
+    pip install -r requirements.txt
+    ./manage.py migrate
+    ./manage.py createsuperuser
+    ./manage.py runserver
+
+    # Run without DjangoCMS
+    ENABLE_DJANGOCMS=False ./manage.py runserver

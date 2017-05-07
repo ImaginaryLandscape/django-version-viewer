@@ -1,6 +1,7 @@
-Django<1.9.0
+Django<1.11.0
 mock==2.0.0
 django-cms==3.4.3
+djangocms_admin_style
 djangocms-text-ckeditor
 flake8
 easy_thumbnails

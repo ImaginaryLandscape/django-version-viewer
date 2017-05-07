@@ -152,7 +152,9 @@ if ENABLE_DJANGOCMS:
         'cms.middleware.language.LanguageCookieMiddleware',
     ]
 
-    INSTALLED_APPS += [
+    INSTALLED_APPS = [
+        'djangocms_admin_style',
+    ] + INSTALLED_APPS + [
         'cms',
         'menus',
         'treebeard',
