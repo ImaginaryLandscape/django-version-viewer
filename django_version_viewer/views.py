@@ -17,6 +17,12 @@ accessor = get_accessor_class()
 class DjangoVersionViewerToolBar(TemplateView):
     template_name = "toolbar.html"
 
+    def dispatch(self, request, *args, **kwargs):
+        if not accessor.allow_access(request):
+            raise PermissionDenied
+        return super(DjangoVersionViewerToolBar, self).dispatch(
+            request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super(DjangoVersionViewerToolBar, self).get_context_data(**kwargs)
         packages = list_package_versions()

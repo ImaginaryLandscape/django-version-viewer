@@ -10,6 +10,7 @@ class TestVersionViewer(TestCase):
 
     url_django_version_viewer = reverse('django_version_viewer')
     url_django_version_viewer_csv = reverse('django_version_viewer_csv')
+    url_django_version_viewer_toolbar = reverse('django_version_viewer_toolbar')
 
     mock_data = [
         {"key": "appdirs", "version": "1.4.3"},
@@ -67,7 +68,7 @@ class TestVersionViewer(TestCase):
         response = client.get(self.url_django_version_viewer)
         self.assertEqual(response.status_code, 403)
 
-    def test_django_version_viewer_view__admin_csv(self):
+    def test_django_version_viewer_csv_view__admin(self):
         client = Client()
         client.login(username=self.admin.username, password="password")
         with mock.patch('pip.get_installed_distributions',
@@ -78,3 +79,30 @@ class TestVersionViewer(TestCase):
                 b'Package Name,Package Version\r\nappdirs,1.4.3\r\ndjango,1.8.18\r\nsix,1.10.0\r\n'
             )
         self.assertEqual(response.status_code, 200)
+
+    def test_django_version_viewer_csv_view__user(self):
+        client = Client()
+        client.login(username=self.user.username, password="password")
+        response = client.get(self.url_django_version_viewer_csv)
+        self.assertEqual(response.status_code, 403)
+
+    def test_django_version_viewer_toolbar_view__admin(self):
+        client = Client()
+        client.login(username=self.admin.username, password="password")
+        with mock.patch('pip.get_installed_distributions',
+                        side_effect=self.mocked_pip_get_installed_distributions):
+            response = client.get(self.url_django_version_viewer_toolbar)
+            #import pdb; pdb.set_trace()
+            context_pakcages = response.context['packages']
+
+            for i in list(range(0, 3)):
+                self.assertEqual(self.mock_data[i]['key'], context_pakcages[i]['package_name'])
+                self.assertEqual(self.mock_data[i]['version'], context_pakcages[i]['package_version'])
+
+        self.assertEqual(response.status_code, 200)
+
+    def test_django_version_viewer_toolbar_view__user(self):
+        client = Client()
+        client.login(username=self.user.username, password="password")
+        response = client.get(self.url_django_version_viewer_toolbar)
+        self.assertEqual(response.status_code, 403)
