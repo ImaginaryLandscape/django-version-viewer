@@ -1,6 +1,20 @@
 # Django Version Viewer
 
-The pip package version viewer plugin allows a queryable endpoint to display a list of dicts representing all installed pip packages in the environment that django is running in. It also allows the insertion of a template tag to any template to display a link which calls up a pop up modal displaying all installed pip packages. You may also configure which users have access to the link and endpoint.
+Version Viewer provides Django Admins (with appropriate permission)
+the ability to view the Python packages and versions used within the project.
+
+This tool can be used in several ways. It provides:
+
+ - a template tag which inserts a link onto a template.
+   Clicking that link opens up a pop up modal displaying installed
+   Python packages.
+ - a DjangoCMS toolbar entry. When clicked, a popup will display installed
+   Python packages.
+ - a CSV export of installed Python packages.
+ - a queryable endpoint that displays installed Python packages.
+
+You may also configure which users have access to the link and endpoint.
+
 
 ---------------------------------------
 ## Installation
@@ -43,26 +57,29 @@ In your `templates` dir, create a `custom_index.html`.
 
 ## Django CMS integration
 
-If Django CMS is installed, a new menu item will be added to the CMS Toolbar Page Menu that
-will allow opening the version viewer popup.
+If Django CMS is installed, a new menu item will be added to the CMS Toolbar
+Page Menu that will allow opening the version viewer popup.
 
 
 ![CMS Integration](/images/version-viewer-cms-integration.jpg "CMS Integration")
 
 ## Permissions
 
-You can set your own access permissions on the template tag and route by defining your own
-`Accessor` class. This class must have a `allow_access` method that returns a `boolean`. By defualt,
-django_version_viewer only allows superusers access to the route and template tag.
+You can set your own access permissions on the template tag and route by
+defining your own `Accessor` class. This class must have a `allow_access`
+method that returns a `boolean`. By defualt, django_version_viewer only
+allows superusers access to the route and template tag.
 
     # Django Version Viewer settings:
-    # default class only allows superusers access
     ACCESSOR_CLASS_PATH = 'mypathto.my.AccessorClass'
+
+    # the default class only allows superusers access
+    django_version_viewer.mixins.SuperuserAccessor
 
 
 ## Running Tests
 
-    cd example18/
-    pip install -r requirements.txt
-    flake8 ..
-    ENABLE_DJANGOCMS=False ./manage.py test django_version_viewer
+    pip install -e .[testing]
+    pip install 'django==1.8'
+    flake8 .
+    ENABLE_DJANGOCMS=False coverage run ./example18/manage.py test django_version_viewer

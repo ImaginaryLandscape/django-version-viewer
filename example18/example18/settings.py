@@ -118,7 +118,8 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
-ACCESSOR_CLASS_PATH = 'django_version_viewer.mixins.Accessor'
+ACCESSOR_CLASS_PATH = 'django_version_viewer.mixins.SuperuserAccessor'
+
 PROJECT_ROOT = BASE_DIR = os.environ.get(
     "DJANGO_PROJECT_ROOT",
     os.path.abspath(os.path.dirname(__file__)))

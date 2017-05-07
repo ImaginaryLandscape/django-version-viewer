@@ -1,13 +1,9 @@
-from pydoc import locate
-
-from django.conf import settings
 from django import template
+from ..utils import get_accessor_class
 
 
+accessor = get_accessor_class()
 register = template.Library()
-accessor_class = locate(
-    getattr(settings, 'ACCESSOR_CLASS_PATH', 'django_version_viewer.mixins.Accessor'))
-accessor = accessor_class()
 
 
 @register.inclusion_tag('version_viewer.html', takes_context=True)
