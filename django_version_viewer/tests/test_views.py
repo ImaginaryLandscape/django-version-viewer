@@ -92,9 +92,7 @@ class TestVersionViewer(TestCase):
         with mock.patch('pip.get_installed_distributions',
                         side_effect=self.mocked_pip_get_installed_distributions):
             response = client.get(self.url_django_version_viewer_toolbar)
-            #import pdb; pdb.set_trace()
             context_pakcages = response.context['packages']
-
             for i in list(range(0, 3)):
                 self.assertEqual(self.mock_data[i]['key'], context_pakcages[i]['package_name'])
                 self.assertEqual(self.mock_data[i]['version'], context_pakcages[i]['package_version'])
