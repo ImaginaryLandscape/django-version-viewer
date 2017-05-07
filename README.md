@@ -41,7 +41,7 @@ Django Version Viewer needs to extend the `admin/index.html` and append it's url
         ...
     ]
 
-In your `templates` dir, create a `custom_index.html`.
+In your `templates/admin/` dir, create a `custom_index.html`.
 
     <!-- custom_index.html -->
     {% extends "admin/index.html" %}
