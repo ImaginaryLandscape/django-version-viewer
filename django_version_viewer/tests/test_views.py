@@ -95,7 +95,8 @@ class TestVersionViewer(TestCase):
             context_pakcages = response.context['packages']
             for i in list(range(0, 3)):
                 self.assertEqual(self.mock_data[i]['key'], context_pakcages[i]['package_name'])
-                self.assertEqual(self.mock_data[i]['version'], context_pakcages[i]['package_version'])
+                self.assertEqual(
+                    self.mock_data[i]['version'], context_pakcages[i]['package_version'])
 
         self.assertEqual(response.status_code, 200)
 
