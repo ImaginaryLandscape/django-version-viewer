@@ -57,7 +57,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
+    'django.middleware.security.SecurityMiddleware',  # migth
     'django.middleware.locale.LocaleMiddleware',
 ]
 
@@ -74,8 +74,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'sekizai.context_processors.sekizai',
-                'cms.context_processors.cms_settings',
+                # 'sekizai.context_processors.sekizai',
+                # 'cms.context_processors.cms_settings',
             ],
         },
     },
@@ -139,8 +139,8 @@ ENABLE_DJANGOCMS = (
     if os.environ.get("ENABLE_DJANGOCMS", True) in ["", "False", False, "false"]
     else True)
 
-
 if ENABLE_DJANGOCMS:
+    print("Inside enable djangoCMS")
     CMS_TEMPLATES = [
         ('home.html', 'Home page template'),
     ]
@@ -168,3 +168,5 @@ if ENABLE_DJANGOCMS:
         'sekizai.context_processors.sekizai',
         'cms.context_processors.cms_settings',
     ]
+else:
+    print("we good")
