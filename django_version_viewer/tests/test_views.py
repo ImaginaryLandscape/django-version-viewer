@@ -58,7 +58,7 @@ class TestVersionViewer(TestCase):
         with mock.patch('pip.get_installed_distributions',
                         side_effect=self.mocked_pip_get_installed_distributions):
             response = client.get(self.url_django_version_viewer)
-            json_response = json.loads(response.content)
+            json_response = json.loads(response.content.decode("utf-8"))
             self.assertEqual(response.status_code, 200)
             self.assertEqual(len(json_response), 3)
 
