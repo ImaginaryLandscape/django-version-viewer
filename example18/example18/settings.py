@@ -60,6 +60,7 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+print(django.VERSION)
 if django.VERSION[0] == 1 and django.VERSION[1] > 7:
     middleware_added = [
         'django.middleware.security.SecurityMiddleware',
