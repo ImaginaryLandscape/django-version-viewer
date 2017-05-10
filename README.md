@@ -41,6 +41,8 @@ Django Version Viewer needs to extend the `admin/index.html` and append it's url
         ...
     ]
 
+    # Note that you can now make a GET request to the route `r'^django_version_viewer/'` to see # a list of your app's installed pip dependencies returned in JSON.
+
 In your `templates/admin/` dir, create a `custom_index.html`.
 
     <!-- custom_index.html -->
