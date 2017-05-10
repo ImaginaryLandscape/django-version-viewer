@@ -1,4 +1,6 @@
 # Django Version Viewer
+[![Build Status](https://travis-ci.org/ImaginaryLandscape/django-version-viewer.svg?branch=master)](https://travis-ci.org/ImaginaryLandscape/django-version-viewer)
+
 
 Version Viewer provides Django Admins (with appropriate permission)
 the ability to view the Python packages and versions used within the project.
@@ -85,7 +87,7 @@ allows superusers access to the route and template tag.
 
     # in a virtualenv
     pip install -e .[testing]
-    pip install 'django==1.8'
+    pip install django==1.8
     flake8 .
     ENABLE_DJANGOCMS=False coverage run ./example18/manage.py test django_version_viewer
 
