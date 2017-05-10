@@ -1,16 +1,13 @@
 from django.core.urlresolvers import reverse
-from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
 from cms.api import get_page_draft
 from cms.toolbar_pool import toolbar_pool
 from cms.toolbar_base import CMSToolbar
+from .utils import get_accessor_class
 
-from pydoc import locate
 
-accessor_class = locate(
-    getattr(settings, 'ACCESSOR_CLASS_PATH', 'django_version_viewer.mixins.Accessor'))
-accessor = accessor_class()
+accessor = get_accessor_class()
 
 
 @toolbar_pool.register

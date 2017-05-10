@@ -1,24 +1,27 @@
 import json
 import csv
 
-from pydoc import locate
-
 from django.http import HttpResponse
-from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.views.generic import View
 from django.views.generic.base import TemplateView
 
 
-from pip_viewer import list_package_versions, get_pip_packages_csv
+from .pip_viewer import list_package_versions, get_pip_packages_csv
+from .utils import get_accessor_class
 
-accessor_class = locate(
-    getattr(settings, 'ACCESSOR_CLASS_PATH', 'django_version_viewer.mixins.Accessor'))
-accessor = accessor_class()
+
+accessor = get_accessor_class()
 
 
 class DjangoVersionViewerToolBar(TemplateView):
     template_name = "toolbar.html"
+
+    def dispatch(self, request, *args, **kwargs):
+        if not accessor.allow_access(request):
+            raise PermissionDenied
+        return super(DjangoVersionViewerToolBar, self).dispatch(
+            request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(DjangoVersionViewerToolBar, self).get_context_data(**kwargs)

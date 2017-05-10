@@ -38,7 +38,6 @@ LANGUAGES = [
 # Application definition
 
 INSTALLED_APPS = [
-    'djangocms_admin_style',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -119,7 +118,8 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
-ACCESSOR_CLASS_PATH = 'django_version_viewer.mixins.Accessor'
+ACCESSOR_CLASS_PATH = 'django_version_viewer.mixins.SuperuserAccessor'
+
 PROJECT_ROOT = BASE_DIR = os.environ.get(
     "DJANGO_PROJECT_ROOT",
     os.path.abspath(os.path.dirname(__file__)))
@@ -152,7 +152,9 @@ if ENABLE_DJANGOCMS:
         'cms.middleware.language.LanguageCookieMiddleware',
     ]
 
-    INSTALLED_APPS += [
+    INSTALLED_APPS = [
+        'djangocms_admin_style',
+    ] + INSTALLED_APPS + [
         'cms',
         'menus',
         'treebeard',
