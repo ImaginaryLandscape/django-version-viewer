@@ -52,7 +52,7 @@ class TestVersionViewer(TestCase):
         self.admin.delete()
         self.user.delete()
 
-    def test_django_version_viewer_view__dmin(self):
+    def test_django_version_viewer_view__admin(self):
         client = Client()
         client.login(username=self.admin.username, password="password")
         with mock.patch('pip.get_installed_distributions',

@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import django
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_DIR = os.path.join(BASE_DIR, "example18")
@@ -57,9 +58,21 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',  # migth
+    'django.middleware.security.SecurityMiddleware',  # maybe create condition
     'django.middleware.locale.LocaleMiddleware',
 ]
+
+if django.VERSION[0] == 1 and django.VERSION[1] > 7:
+    middleware_added = [
+        'django.middleware.security.SecurityMiddleware',
+        'django.middleware.locale.LocaleMiddleware'
+    ]
+else:
+    middleware_added = [
+        'django.middleware.locale.LocaleMiddleware'
+    ]
+
+MIDDLEWARE_CLASSES = MIDDLEWARE_CLASSES + middleware_added
 
 
 ROOT_URLCONF = 'example18.urls'
@@ -74,8 +87,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                # 'sekizai.context_processors.sekizai',
-                # 'cms.context_processors.cms_settings',
             ],
         },
     },
@@ -140,7 +151,6 @@ ENABLE_DJANGOCMS = (
     else True)
 
 if ENABLE_DJANGOCMS:
-    print("Inside enable djangoCMS")
     CMS_TEMPLATES = [
         ('home.html', 'Home page template'),
     ]
@@ -168,5 +178,3 @@ if ENABLE_DJANGOCMS:
         'sekizai.context_processors.sekizai',
         'cms.context_processors.cms_settings',
     ]
-else:
-    print("we good")
