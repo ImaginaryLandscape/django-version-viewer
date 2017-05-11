@@ -4,7 +4,7 @@ setup(
     name='django_version_viewer',
     description="Django app for viewing pip packages and their versions",
     keywords="django python version pip",
-    version='0.0.1a10',
+    version='1.0.0',
     packages=find_packages(),
     install_requires=(
     ),
