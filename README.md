@@ -23,6 +23,10 @@ See .travis.yml for supported versions of Python and Django.
 ## Installation
 ---------------------------------------
 
+To install Django Version Viewer, simply:
+
+  pip install django_version_viewer
+
 Add the following to `INSTALLED_APPS` in `settings.py`
 
     INSTALLED_APPS = [
