@@ -1,4 +1,7 @@
-from django.core.urlresolvers import reverse
+try:
+    from django.urls import reverse
+except:
+    from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 
 from cms.api import get_page_draft
