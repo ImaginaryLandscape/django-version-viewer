@@ -21,8 +21,8 @@ class TestVersionViewer(TestCase):
         {"key": "six", "version": "1.10.0"}
     ]
 
-    def mocked_pip_get_installed_distributions(self, *args, **kwargs):
-        class MockPipObject:
+    def mocked_working_set(self, *args, **kwargs):
+        class MockPackageObject:
             def __init__(self, key, version):
                 self.key = key
                 self.version = version
@@ -31,13 +31,13 @@ class TestVersionViewer(TestCase):
             def __init__(self, data):
                 self.packages = []
                 for _dict in data:
-                    mocked_obj = MockPipObject(_dict['key'], _dict['version'])
+                    mocked_obj = MockPackageObject(_dict['key'], _dict['version'])
                     self.packages.append(mocked_obj)
 
-            def get_installed_distributions(self):
+            def working_set(self):
                 return self.packages
 
-        return MockResponse(self.mock_data).get_installed_distributions()
+        return MockResponse(self.mock_data).working_set()
 
     def setUp(self):
         self.admin = User.objects.create_superuser(
@@ -58,8 +58,9 @@ class TestVersionViewer(TestCase):
     def test_django_version_viewer_view__admin(self):
         client = Client()
         client.login(username=self.admin.username, password="password")
-        with mock.patch('pip.get_installed_distributions',
-                        side_effect=self.mocked_pip_get_installed_distributions):
+
+        with mock.patch('pkg_resources.WorkingSet',
+                        return_value=self.mocked_working_set()):
             response = client.get(self.url_django_version_viewer)
             json_response = json.loads(response.content.decode("utf-8"))
             self.assertEqual(response.status_code, 200)
@@ -74,8 +75,8 @@ class TestVersionViewer(TestCase):
     def test_django_version_viewer_csv_view__admin(self):
         client = Client()
         client.login(username=self.admin.username, password="password")
-        with mock.patch('pip.get_installed_distributions',
-                        side_effect=self.mocked_pip_get_installed_distributions):
+        with mock.patch('pkg_resources.WorkingSet',
+                        side_effect=self.mocked_working_set):
             response = client.get(self.url_django_version_viewer_csv)
             self.assertEqual(
                 response.content,
@@ -92,8 +93,8 @@ class TestVersionViewer(TestCase):
     def test_django_version_viewer_toolbar_view__admin(self):
         client = Client()
         client.login(username=self.admin.username, password="password")
-        with mock.patch('pip.get_installed_distributions',
-                        side_effect=self.mocked_pip_get_installed_distributions):
+        with mock.patch('pkg_resources.WorkingSet',
+                        side_effect=self.mocked_working_set):
             response = client.get(self.url_django_version_viewer_toolbar)
             context_pakcages = response.context['packages']
             for i in list(range(0, 3)):
