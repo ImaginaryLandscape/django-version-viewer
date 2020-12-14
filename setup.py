@@ -4,7 +4,7 @@ setup(
     name='django_version_viewer',
     description="Django app for viewing pip packages and their versions",
     keywords="django python version pip",
-    version='1.0.2',
+    version='1.0.3',
     packages=find_packages(),
     install_requires=(
     ),
@@ -13,6 +13,7 @@ setup(
     },
     url="https://github.com/ImaginaryLandscape/django-version-viewer",
     long_description=open('README.md', 'r').read(),
+    long_description_content_type="text/markdown",
     include_package_data=True,
     classifiers=[
         'Programming Language :: Python :: 2.7',
