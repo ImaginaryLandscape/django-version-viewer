@@ -1,14 +1,18 @@
 try:
-    # django 1.6+
-    from django.conf.urls import url
+    # django 3.0+
+    from django.conf.urls import re_path
 except ImportError:
-    # django <1.6
-    from django.conf.urls.defaults import url
+    try:
+        from django.conf.urls import url as re_path
+        # django >1.6 <3.0
+    except ImportError:
+        # django <1.6
+        from django.conf.urls.defaults import url as re_path
 
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.DjangoVersionViewer.as_view(), name='django_version_viewer'),
-    url(r'^csv/$', views.DjangoVersionViewerCSV.as_view(), name='django_version_viewer_csv'),
-    url(r'^toolbar/$', views.DjangoVersionViewerToolBar.as_view(), name='django_version_viewer_toolbar'),  # noqa
+    re_path(r'^$', views.DjangoVersionViewer.as_view(), name='django_version_viewer'),
+    re_path(r'^csv/$', views.DjangoVersionViewerCSV.as_view(), name='django_version_viewer_csv'),
+    re_path(r'^toolbar/$', views.DjangoVersionViewerToolBar.as_view(), name='django_version_viewer_toolbar'),  # noqa
 ]
