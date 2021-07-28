@@ -55,7 +55,7 @@ In your `templates/admin/` dir, create a `custom_index.html`.
     <!-- custom_index.html -->
     {% extends "admin/index.html" %}
 
-    {% load i18n admin_static pip_version_viewer_tags %}
+    {% load i18n pip_version_viewer_tags %}
 
     {% block content %}
     {% show_pip_package_versions %}
