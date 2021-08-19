@@ -1,4 +1,4 @@
-Django==1.11.29
+Django==2.2.24
 mock==2.0.0
 django-cms==3.4.6
 djangocms_admin_style
