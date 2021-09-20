@@ -91,9 +91,9 @@ allows superusers access to the route and template tag.
 
     # in a virtualenv
     pip install -e .[testing]
-    pip install django==1.8
+    pip install django==2.2.24
     flake8 .
-    ENABLE_DJANGOCMS=False coverage run ./example18/manage.py test django_version_viewer
+    ENABLE_DJANGOCMS=False coverage run ./example22/manage.py test django_version_viewer
 
 
 ## Using the Example Project
@@ -101,7 +101,7 @@ allows superusers access to the route and template tag.
 An example project is provided to demonstrate the project.
 
     # in a virtualenv
-    cd example18/
+    cd example22/
     pip install -r requirements.txt
     ./manage.py migrate
     ./manage.py createsuperuser
