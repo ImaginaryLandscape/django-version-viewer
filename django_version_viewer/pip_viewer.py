@@ -2,6 +2,13 @@ from operator import itemgetter
 import pkg_resources
 
 
+def get_pkg_url(d):
+    metadata = d._get_metadata(d.PKG_INFO)
+    home_page = [m for m in metadata if m.startswith('Home-page:')]
+    url = home_page[0].split(':', 1)[1].strip() if home_page else ''
+    return url
+
+
 def list_package_versions():
     """
     Returns a dict of installed pip packages
@@ -9,7 +16,8 @@ def list_package_versions():
     {'package_name': "django", 'package_version': "1.8.18"}
     """
     installed_packages = pkg_resources.WorkingSet()
-    results = [{"package_name": i.key, "package_version": i.version} for i in installed_packages]
+    results = [{"package_name": i.key, "package_version": i.version,
+        "package_url": get_pkg_url(i)} for i in installed_packages]
     return sorted(results, key=itemgetter('package_name'))
 
 

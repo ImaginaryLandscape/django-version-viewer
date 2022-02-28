@@ -28,7 +28,8 @@
           packages = data;
           var html = "<tr><th>Package Name</th><th>Package Version</th></tr>";
           $.each(packages, function(i, val) {
-            html += "<tr><td style='line-height:normal; padding: 5px 10px!important;'>"+val.package_name+"</td>"+"<td style='line-height:normal; padding: 5px 10px!important;'>"+val.package_version+"</td></tr>"
+            var pkg_name = val.package_url ? "<a href='"+val.package_url+"' target='_blank'>"+val.package_name+"</a>" : val.package_name;
+            html += "<tr><td style='line-height:normal; padding: 5px 10px!important;'>"+pkg_name+"</td>"+"<td style='line-height:normal; padding: 5px 10px!important;'>"+val.package_version+"</td></tr>"
           });
           $('#packages_box tbody').html(html);
 
