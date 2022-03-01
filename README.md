@@ -91,7 +91,7 @@ allows superusers access to the route and template tag.
 
     # in a virtualenv
     pip install -e .[testing]
-    pip install django==2.2.24
+    pip install django==2.2.27
     flake8 .
     ENABLE_DJANGOCMS=False coverage run ./example22/manage.py test django_version_viewer
 
