@@ -21,4 +21,4 @@ install:
   - pip install -qU $DJANGO
   - pip install -e .[testing]
 
-script: ENABLE_DJANGOCMS=False coverage run ./example18/manage.py test django_version_viewer && flake8 .
+script: ENABLE_DJANGOCMS=False coverage run ./example22/manage.py test django_version_viewer && flake8 .
