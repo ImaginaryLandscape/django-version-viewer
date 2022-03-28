@@ -3,10 +3,13 @@ import pkg_resources
 
 
 def get_pkg_url(d):
-    metadata = d._get_metadata(d.PKG_INFO)
-    home_page = [m for m in metadata if m.startswith('Home-page:')]
-    url = home_page[0].split(':', 1)[1].strip() if home_page else ''
-    return url
+    try:
+        metadata = d._get_metadata(d.PKG_INFO)
+        home_page = [m for m in metadata if m.startswith('Home-page:')]
+        url = home_page[0].split(':', 1)[1].strip() if home_page else ''
+        return url
+    except AttributeError:
+        return ''
 
 
 def list_package_versions():
@@ -17,7 +20,7 @@ def list_package_versions():
     """
     installed_packages = pkg_resources.WorkingSet()
     results = [{"package_name": i.key, "package_version": i.version,
-        "package_url": get_pkg_url(i)} for i in installed_packages]
+                "package_url": get_pkg_url(i)} for i in installed_packages]
     return sorted(results, key=itemgetter('package_name'))
 
 

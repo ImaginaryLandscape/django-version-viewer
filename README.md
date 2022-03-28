@@ -1,5 +1,5 @@
 # Django Version Viewer
-[![Build Status](https://travis-ci.org/ImaginaryLandscape/django-version-viewer.svg?branch=master)](https://travis-ci.org/ImaginaryLandscape/django-version-viewer)
+[![Build Status](https://travis-ci.com/ImaginaryLandscape/django-version-viewer.svg?branch=master)](https://travis-ci.org/ImaginaryLandscape/django-version-viewer)
 
 
 Version Viewer provides Django Admins (with appropriate permission)
