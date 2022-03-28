@@ -1,6 +1,4 @@
 # Django Version Viewer
-[![Build Status](https://travis-ci.com/ImaginaryLandscape/django-version-viewer.svg?branch=master)](https://travis-ci.com/ImaginaryLandscape/django-version-viewer)
-
 
 Version Viewer provides Django Admins (with appropriate permission)
 the ability to view the Python packages and versions used within the project.
@@ -16,8 +14,6 @@ This tool can be used in several ways. It provides:
  - a queryable endpoint that displays installed Python packages.
 
 You may also configure which users have access to the link and endpoint.
-
-See .travis.yml for supported versions of Python and Django.
 
 ---------------------------------------
 ## Installation
