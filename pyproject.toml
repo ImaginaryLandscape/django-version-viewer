@@ -1,0 +1,41 @@
+[tool.poetry]
+name = "django-version-viewer"
+homepage = "https://github.com/ImaginaryLandscape/django-version-viewer"
+version = "2.1.4"
+description = "Django app for viewing python packages and their versions"
+authors = ["Imagescape <info@imagescape.com>"]
+license = "MIT"
+classifiers=[
+"Programming Language :: Python :: 2.7",
+"Programming Language :: Python :: 3.4",
+"Programming Language :: Python :: 3.5",
+"Programming Language :: Python :: 3.6",
+"Programming Language :: Python :: 3.7",
+"Programming Language :: Python :: 3.8",
+"Programming Language :: Python :: 3.9",
+"Programming Language :: Python :: 3.10",
+"Framework :: Django",
+"Framework :: Django :: 1.11",
+"Framework :: Django :: 2.2",
+"Framework :: Django :: 3.0",
+"Framework :: Django :: 3.1",
+"Framework :: Django :: 3.2",
+"Framework :: Django :: 4.0",
+]
+include = [
+"LICENSE",
+"CHANGELOG.md",
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.dev-dependencies]
+mock = "^4.0.3"
+six = "^1.16.0"
+flake8 = "^4.0.1"
+coverage = "^6.3.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
