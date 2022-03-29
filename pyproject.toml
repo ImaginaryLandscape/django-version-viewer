@@ -1,8 +1,9 @@
 [tool.poetry]
 name = "django-version-viewer"
-homepage = "https://github.com/ImaginaryLandscape/django-version-viewer"
-version = "2.1.4"
+version = "2.1.5"
 description = "Django app for viewing python packages and their versions"
+homepage = "https://github.com/ImaginaryLandscape/django-version-viewer"
+readme = "README.md"
 authors = ["Imagescape <info@imagescape.com>"]
 license = "MIT"
 classifiers=[
