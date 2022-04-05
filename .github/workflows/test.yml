@@ -23,4 +23,7 @@ jobs:
 
       - name: Run tests
         working-directory: ./example22        
-        run: python manage.py test django_version_viewer && flake8 .
+        run: python manage.py test django_version_viewer
+
+      - name: Run flake
+        run: flake8 .
