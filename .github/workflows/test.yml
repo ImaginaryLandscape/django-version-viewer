@@ -22,4 +22,5 @@ jobs:
           pip install -r ./example22/requirements.txt
 
       - name: Run tests
-        run: ./example22/manage.py test django_version_viewer && flake8 .
+        working-directory: ./example22        
+        run: python manage.py test django_version_viewer && flake8 .
