@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django-version-viewer"
-version = "2.1.5"
+version = "2.1.6"
 description = "Django app for viewing python packages and their versions"
 homepage = "https://github.com/ImaginaryLandscape/django-version-viewer"
 readme = "README.md"
@@ -27,9 +27,6 @@ include = [
 "LICENSE",
 "CHANGELOG.md",
 ]
-
-[tool.poetry.dependencies]
-python = "^3.8"
 
 [tool.poetry.dev-dependencies]
 mock = "^4.0.3"

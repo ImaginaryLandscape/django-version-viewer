@@ -21,7 +21,7 @@ You may also configure which users have access to the link and endpoint.
 
 To install the Django Version Viewer, simply:
 
-    pip install django_version_viewer
+    pip install django-version-viewer
 
 Add the following to `INSTALLED_APPS` in `settings.py`
 
