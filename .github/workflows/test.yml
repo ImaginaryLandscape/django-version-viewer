@@ -17,7 +17,6 @@ jobs:
 
       - name: Install dependencies
         run: |
-          - pip install -qU $DJANGO
           - pip install -e .[testing]
 
       - name: Run tests
