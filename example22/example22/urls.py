@@ -31,4 +31,3 @@ if settings.ENABLE_DJANGOCMS:
     urlpatterns += [
         path('', include('cms.urls')),
     ]
-
