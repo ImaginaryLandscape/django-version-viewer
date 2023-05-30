@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django-version-viewer"
-version = "2.1.6"
+version = "2.1.7"
 description = "Django app for viewing python packages and their versions"
 homepage = "https://github.com/ImaginaryLandscape/django-version-viewer"
 readme = "README.md"
