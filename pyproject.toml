@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django-version-viewer"
-version = "2.1.7"
+version = "2.1.8"
 description = "Django app for viewing python packages and their versions"
 homepage = "https://github.com/ImaginaryLandscape/django-version-viewer"
 readme = "README.md"
@@ -22,6 +22,7 @@ classifiers=[
 "Framework :: Django :: 3.1",
 "Framework :: Django :: 3.2",
 "Framework :: Django :: 4.0",
+"Framework :: Django :: 4.2",
 ]
 include = [
 "LICENSE",

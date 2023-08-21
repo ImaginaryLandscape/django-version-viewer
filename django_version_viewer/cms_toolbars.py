@@ -2,7 +2,7 @@ try:
     from django.urls import reverse
 except ImportError:
     from django.core.urlresolvers import reverse
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from cms.api import get_page_draft
 from cms.toolbar_pool import toolbar_pool
