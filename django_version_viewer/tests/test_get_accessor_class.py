@@ -1,8 +1,8 @@
-import mock
+from unittest import mock
+from django.core import exceptions
 from django.test import TestCase, override_settings
 from django.test.client import RequestFactory
 from django_version_viewer.utils import get_accessor_class
-from django.core import exceptions
 
 
 class FakeAccessorClassTrue(object):

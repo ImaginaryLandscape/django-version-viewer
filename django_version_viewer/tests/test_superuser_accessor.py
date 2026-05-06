@@ -1,4 +1,4 @@
-import mock
+from unittest import mock
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django_version_viewer.mixins import SuperuserAccessor

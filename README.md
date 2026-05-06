@@ -39,7 +39,7 @@ Django Version Viewer needs to extend the `admin/index.html` and append it's url
 
     urlpatterns = [
         ...
-        url(r'^django_version_viewer/', include('django_version_viewer.urls')),
+        path('django_version_viewer/', include('django_version_viewer.urls')),
         ...
     ]
 
@@ -87,21 +87,6 @@ allows superusers access to the route and template tag.
 
     # in a virtualenv
     pip install -e .[testing]
-    pip install django==2.2.27
+    pip install Django==5.2.14
     flake8 .
     ENABLE_DJANGOCMS=False coverage run ./example22/manage.py test django_version_viewer
-
-
-## Using the Example Project
-
-An example project is provided to demonstrate the project.
-
-    # in a virtualenv
-    cd example22/
-    pip install -r requirements.txt
-    ./manage.py migrate
-    ./manage.py createsuperuser
-    ./manage.py runserver
-
-    # Run without DjangoCMS
-    ENABLE_DJANGOCMS=False ./manage.py runserver

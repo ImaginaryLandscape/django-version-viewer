@@ -1,5 +1,3 @@
-
-
 class SuperuserAccessor(object):
 
     def allow_access(self, request):
